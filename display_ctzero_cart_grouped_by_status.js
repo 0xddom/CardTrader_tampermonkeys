@@ -5,6 +5,7 @@
 // @description  Display items in CT Zero orders grouped by processing/shipment status
 // @author       Sibbob
 // @match        https://www.cardtrader.com/orders/buyer_future_order
+// @match        https://www.cardtrader.com/en/orders/buyer_future_order
 // @icon         https://www.cardtrader.com/assets/favicon/favicon-32x32-a5e0283790f269dc65e3d5d886d9ec2ac290bf407249b2c124e7baff5c10080d.png
 // ==/UserScript==
 const TEXT_HEADER_CLASS = "bg-tertiary";
@@ -67,7 +68,7 @@ function main() {
             .then(data => {
             console.debug('FetchedData',lineId,data);
             let orderInfo = data[0].data;
-            if (orderInfo.repurchase){
+            while (orderInfo.repurchase){
                 orderInfo = orderInfo.repurchase;
             }
             console.debug('ProcessedData',lineId,orderInfo);
